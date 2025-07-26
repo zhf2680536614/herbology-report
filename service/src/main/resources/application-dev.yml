@@ -1,0 +1,8 @@
+herbology:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: zhf160814
+    host: 8.130.134.127
+    port: 13306
+    database: opb

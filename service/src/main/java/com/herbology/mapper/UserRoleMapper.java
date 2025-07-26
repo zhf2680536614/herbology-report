@@ -1,0 +1,16 @@
+package com.herbology.mapper;
+
+import com.herbology.entity.UserRole;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+
+/**
+ * <p>
+ * 用户-角色关系表 Mapper 接口
+ * </p>
+ *
+ * @author atey
+ * @since 2025-07-26
+ */
+public interface UserRoleMapper extends BaseMapper<UserRole> {
+
+}

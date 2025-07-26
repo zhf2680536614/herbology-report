@@ -1,0 +1,35 @@
+server:
+  port: 8081
+spring:
+  profiles:
+    active: dev
+  main:
+    allow-circular-references: true
+  datasource:
+    driver-class-name: ${herbology.datasource.driver-class-name}
+    url: jdbc:mysql://${herbology.datasource.host}:${herbology.datasource.port}/${herbology.datasource.database}?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true
+    username: ${herbology.datasource.username}
+    password: ${herbology.datasource.password}
+  application:
+    name: herbology
+
+mybatis-plus:
+  configuration:
+    default-enum-type-handler: com.baomidou.mybatisplus.core.handlers.MybatisEnumTypeHandler
+    map-underscore-to-camel-case: true
+  global-config:
+    db-config:
+      update-strategy: not_null
+      id-type: assign_id
+      logic-delete-field: deleted
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+    banner: true
+
+logging:
+  level:
+    com:
+      herbology:
+        mapper: debug
+        service: info
+        controller: info
