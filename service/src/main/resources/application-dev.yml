@@ -5,4 +5,4 @@ herbology:
     password: zhf160814
     host: 8.130.134.127
     port: 13306
-    database: opb
+    database: herbology

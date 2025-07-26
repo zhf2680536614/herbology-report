@@ -2,6 +2,7 @@ package com.herbology.mapper;
 
 import com.herbology.entity.UserRole;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Mapper;
 
 /**
  * <p>
@@ -11,6 +12,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @author atey
  * @since 2025-07-26
  */
+@Mapper
 public interface UserRoleMapper extends BaseMapper<UserRole> {
 
 }
