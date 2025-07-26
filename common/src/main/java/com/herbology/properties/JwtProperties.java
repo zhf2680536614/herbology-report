@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Data
-@ConfigurationProperties(prefix = "atey.jwt")
+@ConfigurationProperties(prefix = "herbology.jwt")
 public class JwtProperties {
     //用户jwt相关配置
     private String userSecretKey;

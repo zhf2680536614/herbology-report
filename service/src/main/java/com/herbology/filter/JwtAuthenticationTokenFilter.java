@@ -121,7 +121,6 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
             filterChain.doFilter(request, response);
         }catch (ArrayIndexOutOfBoundsException e) {
             //response.setStatus(HttpServletResponse.SC_FOUND);
-            System.out.println("错误");
         }
     }
 }

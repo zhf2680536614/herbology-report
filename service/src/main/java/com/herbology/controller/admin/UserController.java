@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author atey
  * @since 2025-07-26
  */
-@RestController
+@RestController("AdminUserController")
 @RequestMapping("/user")
 public class UserController {
 

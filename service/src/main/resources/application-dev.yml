@@ -6,3 +6,11 @@ herbology:
     host: 8.130.134.127
     port: 13306
     database: herbology
+  jwt:
+    user-secret-key: ATEY0ATEY0ATEY0ATEY0ATEY0ATEY0ATEY0ATEY0ATEY0ATEY0OPB0USER
+    user-token-name: Authentication
+    user-ttl: 72000000
+
+    manage-secret-key: ATEY0ATEY0ATEY0ATEY0ATEY0ATEY0ATEY0ATEY0ATEY0ATEY0OPB0MANAGE
+    manage-token-name: Token
+    manage-ttl: 72000000

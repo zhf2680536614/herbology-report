@@ -68,8 +68,8 @@ public class SecurityConfig {
         if (roleAuthorities.isEmpty()) {
             List<RoleAuthorities> empty = new ArrayList<>();
             List<String> l = new ArrayList<>();
-            l.add("/**");
-            empty.add(new RoleAuthorities("USER", l));
+            l.add("/empty");
+            empty.add(new RoleAuthorities("EMPTY", l));
             return empty;
         }
         Map<String, List<String>> collect = roleAuthorities.stream()
