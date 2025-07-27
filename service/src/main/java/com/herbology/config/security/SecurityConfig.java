@@ -11,6 +11,7 @@ import com.mybatisflex.core.row.Db;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.Ordered;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -30,7 +31,7 @@ import java.util.stream.Collectors;
 @Configuration
 @EnableWebSecurity //此注解开启 Security 的 Web 安全功能
 @RequiredArgsConstructor
-public class SecurityConfig {
+public class SecurityConfig implements Ordered {
 
     private final RoleAuthorityMapper roleAuthorityMapper;
 
@@ -106,5 +107,10 @@ public class SecurityConfig {
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
+    }
+    
+    @Override
+    public int getOrder() {
+        return Ordered.LOWEST_PRECEDENCE;
     }
 }
