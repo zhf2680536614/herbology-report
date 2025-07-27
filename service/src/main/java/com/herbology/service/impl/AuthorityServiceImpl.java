@@ -3,7 +3,7 @@ package com.herbology.service.impl;
 import com.herbology.entity.Authority;
 import com.herbology.mapper.AuthorityMapper;
 import com.herbology.service.IAuthorityService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.mybatisflex.spring.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
 /**

@@ -3,7 +3,7 @@ package com.herbology.service.impl;
 import com.herbology.entity.UserRole;
 import com.herbology.mapper.UserRoleMapper;
 import com.herbology.service.IUserRoleService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.mybatisflex.spring.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
 /**

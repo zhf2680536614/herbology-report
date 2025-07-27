@@ -2,7 +2,7 @@ package com.herbology.mapper;
 
 import com.herbology.entity.RAConfig;
 import com.herbology.entity.RoleAuthority;
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.mybatisflex.core.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

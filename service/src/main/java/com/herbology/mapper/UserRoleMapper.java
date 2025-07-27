@@ -1,7 +1,7 @@
 package com.herbology.mapper;
 
 import com.herbology.entity.UserRole;
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.mybatisflex.core.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 
 /**

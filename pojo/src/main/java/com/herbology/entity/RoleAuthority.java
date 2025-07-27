@@ -1,12 +1,13 @@
 package com.herbology.entity;
 
-import com.baomidou.mybatisplus.annotation.TableName;
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
 
 import java.io.Serial;
 import java.time.LocalDateTime;
 import java.io.Serializable;
+
+import com.mybatisflex.annotation.Id;
+import com.mybatisflex.annotation.KeyType;
+import com.mybatisflex.annotation.Table;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -24,7 +25,7 @@ import lombok.experimental.Accessors;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@TableName("role_authority")
+@Table("role_authority")
 @ApiModel(value="RoleAuthority对象", description="角色-权限关系表")
 public class RoleAuthority implements Serializable {
 
@@ -32,7 +33,7 @@ public class RoleAuthority implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @ApiModelProperty(value = "id")
-    @TableId(value = "id", type = IdType.AUTO)
+    @Id(value = "id", keyType = KeyType.Auto)
     private Long id;
 
     @ApiModelProperty(value = "角色id")

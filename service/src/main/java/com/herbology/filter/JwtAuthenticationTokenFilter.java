@@ -1,7 +1,6 @@
 package com.herbology.filter;
 
 import cn.hutool.core.util.ObjectUtil;
-import com.baomidou.mybatisplus.extension.toolkit.Db;
 import com.herbology.config.security.SecurityConfig;
 import com.herbology.config.security.UserDetailsImpl;
 import com.herbology.constant.JwtClaimsConstant;
@@ -13,6 +12,9 @@ import com.herbology.enumeration.RoleAuthorityEnum;
 import com.herbology.enumeration.UserTypeEnum;
 import com.herbology.properties.JwtProperties;
 import com.herbology.utils.JwtUtil;
+import com.mybatisflex.core.query.QueryWrapper;
+import com.mybatisflex.core.row.Db;
+import com.mybatisflex.core.row.DbChain;
 import io.jsonwebtoken.Claims;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -88,28 +90,31 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
                 map.put(userId, UserTypeEnum.MANAGE.getValue());
                 userContext.setUser(map);
             }
-
-            User user = Db.lambdaQuery(User.class)
-                    .eq(User::getId, userId)
-                    .one();
-
+            
+            User user = Db.selectOneByQuery("user",
+                    QueryWrapper.create(new User())
+                            .eq(User::getId, userId)
+            ).toEntity(User.class);
+            
             UserDetailsImpl loginUser = new UserDetailsImpl();
             loginUser.setUser(user);
-
-            List<UserRole> list = Db.lambdaQuery(UserRole.class)
+            
+            List<UserRole> list = DbChain.table(UserRole.class)
                     .eq(UserRole::getUserId, userId)
                     .eq(UserRole::getStatus, RoleAuthorityEnum.NORMAL.getKey())
-                    .list();
-            List<Long> roleIdList = list.stream().map(UserRole::getRoleId).toList();
-
-            List<String> roleNameList = Db.lambdaQuery(Role.class)
-                    .in(Role::getId, roleIdList)
-                    .eq(Role::getStatus, RoleAuthorityEnum.NORMAL.getKey())
                     .list()
                     .stream()
-                    .map(Role::getName)
+                    .map(row -> row.toEntity(UserRole.class))
                     .toList();
-
+            
+            List<Long> roleIdList = list.stream().map(UserRole::getRoleId).toList();
+            
+            List<String> roleNameList = Db.selectListByQuery(
+                    QueryWrapper.create()
+                            .in(Role::getId, roleIdList)
+                            .eq(Role::getStatus, RoleAuthorityEnum.NORMAL.getKey())
+            ).stream().map(row -> row.toEntity(Role.class)).map(Role::getName).toList();
+            
             List<GrantedAuthority> authorities = roleNameList.stream()
                     .map(roleName -> new SimpleGrantedAuthority("ROLE_" + roleName))
                     .collect(Collectors.toList());

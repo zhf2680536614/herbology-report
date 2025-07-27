@@ -1,7 +1,7 @@
 package com.herbology.service;
 
 import com.herbology.entity.UserRole;
-import com.baomidou.mybatisplus.extension.service.IService;
+import com.mybatisflex.core.service.IService;
 
 /**
  * <p>

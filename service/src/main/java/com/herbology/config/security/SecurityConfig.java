@@ -1,13 +1,13 @@
 package com.herbology.config.security;
 
-import cn.hutool.core.stream.CollectorUtil;
-import com.baomidou.mybatisplus.extension.toolkit.Db;
 import com.herbology.entity.Authority;
 import com.herbology.entity.RAConfig;
 import com.herbology.entity.RoleAuthorities;
 import com.herbology.enumeration.RoleAuthorityEnum;
 import com.herbology.filter.JwtAuthenticationTokenFilter;
 import com.herbology.mapper.RoleAuthorityMapper;
+import com.mybatisflex.core.query.QueryWrapper;
+import com.mybatisflex.core.row.Db;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -84,10 +84,11 @@ public class SecurityConfig {
 
     //获取不需要认证的角色与权限信息
     public List<String> getNotAuthorities() {
-        List<String> list = Db.lambdaQuery(Authority.class)
-                .eq(Authority::getAuth, RoleAuthorityEnum.FAIL.getKey())
-                .eq(Authority::getStatus, RoleAuthorityEnum.NORMAL.getKey())
-                .list().stream().map(Authority::getName).collect(Collectors.toList());
+        List<String> list = Db.selectListByQuery(
+                        QueryWrapper.create(new Authority())
+                                .eq(Authority::getAuth, RoleAuthorityEnum.FAIL.getKey())
+                                .eq(Authority::getStatus, RoleAuthorityEnum.NORMAL.getKey())
+                ).stream().map(row -> row.toEntity(Authority.class).getName()).collect(Collectors.toList());
         if (list.isEmpty()) {
             List<String> l = new ArrayList<>();
             l.add("/**");
