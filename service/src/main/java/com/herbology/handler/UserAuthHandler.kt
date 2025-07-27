@@ -20,7 +20,6 @@ import java.time.LocalDateTime
  */
 @Component
 @RequiredArgsConstructor
-@Slf4j
 class UserAuthHandler(
 	private val authorityService: IAuthorityService,
 	private val urlMapping: RequestMappingHandlerMapping,
@@ -33,7 +32,7 @@ class UserAuthHandler(
 					val auth = Authority().apply {
 						name = authAnnotation.value.ifBlank { path }
 						status = authAnnotation.status
-						auth = authAnnotation.requireAuth.compareTo(false)
+						auth = if (!authAnnotation.requireAuth) 1 else 0
 						description = authAnnotation.description
 						updateTime = LocalDateTime.now()
 					}
@@ -41,8 +40,8 @@ class UserAuthHandler(
 				}
 			}
 		}
-		authorityService.saveOrUpdateBatch(authList)
-		log.info("动态权限更新完成")
+		authorityService.saveOrUpdateAuth(authList)
+		log.info("动态权限更新完成, 共{}条", authList.size)
 	}
 
 
