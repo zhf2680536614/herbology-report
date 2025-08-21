@@ -1,6 +1,5 @@
 package com.herbology.service.impl;
 
-import com.herbology.annotation.Auth;
 import com.herbology.entity.Authority;
 import com.herbology.mapper.AuthorityMapper;
 import com.herbology.service.IAuthorityService;

@@ -5,7 +5,6 @@ import com.herbology.annotation.Auth
 import com.herbology.entity.Authority
 import com.herbology.service.IAuthorityService
 import lombok.RequiredArgsConstructor
-import lombok.extern.slf4j.Slf4j
 import org.springframework.boot.ApplicationArguments
 import org.springframework.boot.ApplicationRunner
 import org.springframework.core.Ordered
