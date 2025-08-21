@@ -1,6 +1,6 @@
 package com.herbology.handler
 
-import com.herbology.Loggable
+import com.herbology.config.Loggable
 import com.herbology.annotation.Auth
 import com.herbology.entity.Authority
 import com.herbology.service.IAuthorityService
